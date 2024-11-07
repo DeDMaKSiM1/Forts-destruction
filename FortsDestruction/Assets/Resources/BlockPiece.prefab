@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1679711581196503445}
   - component: {fileID: 6314578808757520141}
   - component: {fileID: 4141696090011905621}
+  - component: {fileID: 5735174950088229882}
   - component: {fileID: 8559889649835625161}
   m_Layer: 0
   m_Name: BlockPiece
@@ -196,7 +197,19 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 4141696090011905621}
         m_TargetAssemblyTypeName: Assets.Scripts.PhysicsRegulation, Assembly-CSharp
-        m_MethodName: AddForce
+        m_MethodName: AddForceEnemySide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 5735174950088229882}
+        m_TargetAssemblyTypeName: Assets.Scripts.LayerChanger, Assembly-CSharp
+        m_MethodName: ToChangeLayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -244,6 +257,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8ae7cb45842914892c1b42666400c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5735174950088229882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639374275513006562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaea256a6eaf7854eb22fd205158c181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LayerName: ParticlyNonCollidable
 --- !u!114 &8559889649835625161
 MonoBehaviour:
   m_ObjectHideFlags: 0

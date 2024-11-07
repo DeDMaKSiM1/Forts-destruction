@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 namespace Assets.Scripts
@@ -7,8 +6,9 @@ namespace Assets.Scripts
     public class PhysicsRegulation : MonoBehaviour
     {
         private Rigidbody2D rb;
-        private float explosionForce = 100f;
-        private Vector2 explosionDirection = new(-3, -4);
+        private float explosionForce;
+        private Vector2 _explosionEnemyDirection = new(-0.5f, 0.5f);
+        private Vector2 _explosionHeroDirection = new(0.5f, 0.5f);
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -21,9 +21,15 @@ namespace Assets.Scripts
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
         }
-        public void AddForce()
+        public void AddForceEnemySide()
         {
-            rb.AddForce(explosionDirection * explosionForce);
+            explosionForce = Random.Range(2f, 6f);
+            rb.AddForce(_explosionEnemyDirection * explosionForce);
+        }
+        public void AddForceHeroSide()
+        {
+            explosionForce = Random.Range(2f, 6f);
+            rb.AddForce(_explosionHeroDirection * explosionForce);
         }
     }
 }
