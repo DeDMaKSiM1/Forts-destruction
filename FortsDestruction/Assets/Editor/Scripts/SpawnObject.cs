@@ -23,7 +23,7 @@ public class SpawnObject : MonoBehaviour
         {
             for (int j = 0; j < NumberOfPieces / 10; j++)
             {
-                //Инстанциирование объекта
+                //Инстанциирование объекта, делим на 20 чтобы инстанциировать блок на 1/20 = 0.05 правее или выше, т.к. размер блока 0.05
                 Instantiate(prefab, new Vector2(j / 20f, i / 20f), Quaternion.identity);
             }
         }
