@@ -3,7 +3,7 @@
 
 namespace Assets.Scripts
 {
-    public class PhysicsRegulation : MonoBehaviour
+    public class BlockPhysics : MonoBehaviour
     {
         private Rigidbody2D rb;
 

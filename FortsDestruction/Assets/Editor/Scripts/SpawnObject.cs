@@ -24,7 +24,7 @@ public class SpawnObject : MonoBehaviour
             for (int j = 0; j < NumberOfPieces / 10; j++)
             {
                 //Инстанциирование объекта
-                Instantiate(prefab, new Vector2(j / 10f, i / 10f), Quaternion.identity);
+                Instantiate(prefab, new Vector2(j / 20f, i / 20f), Quaternion.identity);
             }
         }
         /*Дополнительные ненужные мне возможности
