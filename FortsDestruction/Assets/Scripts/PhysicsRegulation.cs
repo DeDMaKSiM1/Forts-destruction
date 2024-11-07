@@ -6,9 +6,7 @@ namespace Assets.Scripts
     public class PhysicsRegulation : MonoBehaviour
     {
         private Rigidbody2D rb;
-        private float explosionForce;
-        private Vector2 _explosionEnemyDirection = new(-0.5f, 0.5f);
-        private Vector2 _explosionHeroDirection = new(0.5f, 0.5f);
+
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -23,13 +21,11 @@ namespace Assets.Scripts
         }
         public void AddForceEnemySide()
         {
-            explosionForce = Random.Range(2f, 6f);
-            rb.AddForce(_explosionEnemyDirection * explosionForce);
+            rb.AddForce(new(-0.5f * Random.Range(2f, 6f), 0.7f * Random.Range(-4f, 6f)));
         }
         public void AddForceHeroSide()
         {
-            explosionForce = Random.Range(2f, 6f);
-            rb.AddForce(_explosionHeroDirection * explosionForce);
+            rb.AddForce(new(0.5f * Random.Range(2f, 6f), 0.7f * Random.Range(-4f, 6f)));
         }
     }
 }

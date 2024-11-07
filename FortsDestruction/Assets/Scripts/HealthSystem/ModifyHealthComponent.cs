@@ -8,15 +8,13 @@ namespace Assets.Scripts.HealthSystem
     {
         [SerializeField] private float ModifyValue = -10;
         [SerializeField] private string Tag;
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Обнаружен коллайдер");
-            if (other.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable) && other.gameObject.CompareTag(Tag))
+            if (collision.TryGetComponent<IDamageable>(out IDamageable damageable) && collision.CompareTag(Tag))
             {
-                Debug.Log("Обнаружен нужный коллайдер");
-
                 damageable.TakeDamage(ModifyValue);
             }
         }
+
     }
 }

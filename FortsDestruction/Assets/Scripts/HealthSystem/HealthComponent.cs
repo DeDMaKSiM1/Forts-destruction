@@ -15,11 +15,8 @@ namespace Assets.Scripts.HealthSystem
 
         public void CheckHealth()
         {
-            Debug.Log("прохожу проверку на событие");
-
             if (Health <= 0)
             {
-                Debug.Log("’п <= 0, начинаю событие");
                 OnHealthZero.Invoke();
             }
         }
