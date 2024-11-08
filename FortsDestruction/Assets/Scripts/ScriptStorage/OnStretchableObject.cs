@@ -3,7 +3,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.ScriptStorage
 {
     public class OnStretchableObject : ClickableObject
     {
