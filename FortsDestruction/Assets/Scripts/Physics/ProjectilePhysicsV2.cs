@@ -4,10 +4,10 @@ namespace Assets.Scripts.Physics
 {
     public class ProjectilePhysicsV2 : MonoBehaviour
     {
-
         [SerializeField] private float mass = 1f;
-        [SerializeField] private float angle = 45f;
         private Rigidbody2D rb;
+
+        public float Mass { get => mass; }
         
         private void Awake()
         {
