@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 1131738281}
   - component: {fileID: 1131738283}
   - component: {fileID: 1131738282}
+  - component: {fileID: 1131738284}
   m_Layer: 6
   m_Name: Launcher
   m_TagString: Untagged
@@ -245,7 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 8579317605321130862, guid: f1139ccf6fa0e1d4c88680193118ea3c, type: 3}
-  LaunchForce: 110
   SpawnPosition: {fileID: 1467281628}
 --- !u!212 &1131738278
 SpriteRenderer:
@@ -483,10 +483,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df94c4aa2c87bf34ba31d61d52088c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AngleLimitationY: -0.5
-  ProjectileSpeed: 1.8
+  AngleLimitationPositive: 90
+  AngleLimitationNegative: -15
+  ProjectileSpeed: 2
   minDistance: 8.5
   initialPosition: {fileID: 1467281628}
+--- !u!114 &1131738284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131738276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d90ba37fd8b10648ba5d53c136a6c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MouseUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1131738277}
+        m_TargetAssemblyTypeName: Assets.Scripts.ProjectileLauncher, Assembly-CSharp
+        m_MethodName: LaunchProjectile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1327915843
 GameObject:
   m_ObjectHideFlags: 0

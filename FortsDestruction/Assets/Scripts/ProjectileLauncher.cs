@@ -1,28 +1,20 @@
 ﻿using Assets.Scripts.Physics;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class ProjectileLauncher  : MonoBehaviour
+    public class ProjectileLauncher : MonoBehaviour
     {
         [SerializeField] private GameObject ProjectilePrefab;
-        [SerializeField] private float LaunchForce = 10f;
         [SerializeField] private Transform SpawnPosition;
 
+        private ProjectilePhysics projectilePhysics;
 
-        [ContextMenu("Запустить снаряд")]
-        public void LaunchProjectile()
+        public void Launch(Vector2 launchDirection, float distance)
         {
-            GameObject projectile = Instantiate(ProjectilePrefab, SpawnPosition);
-            if (!projectile.TryGetComponent<ProjectilePhysics>(out ProjectilePhysics projectilePhysics))
-            {
-                Debug.Log("Не смог через TryGetComponent найти ProjectilePhysics");
-                return;
-            }
-            projectilePhysics.SetLaunchForce(LaunchForce);
-
-            projectilePhysics.Launch();
+            GameObject projectile = Instantiate(ProjectilePrefab, SpawnPosition.position, Quaternion.identity);
+            projectilePhysics = projectile.GetComponent<ProjectilePhysics>();
+            projectilePhysics.Initialize(launchDirection, distance);
         }
     }
 }
