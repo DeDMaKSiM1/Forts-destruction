@@ -10,11 +10,11 @@ namespace Assets.Scripts
 
         private ProjectilePhysics projectilePhysics;
 
-        public void Launch(Vector2 launchDirection, float distance)
+        public void Launch(/*Vector2 launchDirection, float distance)*/)
         {
             GameObject projectile = Instantiate(ProjectilePrefab, SpawnPosition.position, Quaternion.identity);
-            projectilePhysics = projectile.GetComponent<ProjectilePhysics>();
-            projectilePhysics.Initialize(launchDirection, distance);
+            //projectilePhysics = projectile.GetComponent<ProjectilePhysics>();
+            //projectilePhysics.Initialize(launchDirection, distance);
         }
     }
 }

@@ -101,7 +101,7 @@ namespace Assets.Scripts
         }
         private void LaunchProjectile()
         {
-            projectileLauncher.Launch(launchDirection, distance);
+            //projectileLauncher.Launch(launchDirection, distance);
         }
         private void OnMouseDown()
         {
