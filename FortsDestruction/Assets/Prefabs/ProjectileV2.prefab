@@ -222,5 +222,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f59236073218b4a9f7fa5e66f795f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 10
-  angle: 45
+  mass: 1

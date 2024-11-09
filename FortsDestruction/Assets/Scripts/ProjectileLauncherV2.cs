@@ -25,15 +25,14 @@ namespace Assets.Scripts
             //Рассчитывает направление запуска объекта
             LaunchDirection = new Vector2(SpawnPosition.position.x - mousePosition.x, SpawnPosition.position.y - mousePosition.y);
 
-            //Нормализуем вектор чтобы получить направление вектора в единичном виде
-            LaunchDirection.Normalize();
-            //Debug.Log($"launchDirection = {launchDirection}");
+
         }
         private void Launch()
         {
             GameObject projectileObject = Instantiate(ProjectilePrefab, SpawnPosition.position,Quaternion.identity);
             projectile = projectileObject.GetComponent<ProjectilePhysicsV2>();
-            projectile.InitializationProjectile(LaunchDirection, launchForce);
+            Debug.Log($"LaunchDirection = {LaunchDirection.normalized}");
+            projectile.InitializationProjectile(LaunchDirection.normalized, launchForce);
         }
         private void OnMouseDown()
         {

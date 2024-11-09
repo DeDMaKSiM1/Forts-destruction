@@ -18,7 +18,7 @@ namespace Assets.Scripts.Physics
         {
             float initialVelocity = launchForce / mass;
             Vector2 velocity = launchDirection * initialVelocity;
-            Debug.Log(velocity);
+            Debug.Log($"velocity = {velocity}");
             //float vX = initialVelocity * Mathf.Cos(angle * Mathf.Deg2Rad);
             //float vY = initialVelocity * Mathf.Sin(angle * Mathf.Deg2Rad);
 
