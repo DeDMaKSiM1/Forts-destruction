@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Physics
+namespace Assets.Scripts.Projectile
 {
-    public class ProjectilePhysicsV2 : MonoBehaviour
+    public class ProjectilePhysics : MonoBehaviour
     {
         [SerializeField] private float mass = 1f;
         private Rigidbody2D rb;

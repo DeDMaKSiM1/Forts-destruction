@@ -1,26 +1,22 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Projectile
 {
-    public class TrajectoryVisualizerV1 : MonoBehaviour
+    public class TrajectoryVisualizer : MonoBehaviour
     {
         [SerializeField] private float launchForce = 10f;
         [SerializeField] private float mass = 1f;
 
         //Ограничение угла поворота пушки Y координаты
-        [SerializeField] private float AngleLimitationY;
-        ////
-        //[SerializeField] private float ProjectileSpeed = 2f;
-        //Для ручной регулировки силы выстрела занулить переменную ниже
-        [SerializeField] private float minDistance = maxDistance;
+        [SerializeField] private float AngleLimitationYPositive = 90f;
+        [SerializeField] private float AngleLimitationYNegative = -5f;
+
         //Для гибкости в начале расчета позиции траектории
         [SerializeField] private Transform initialPosition;
 
+        private CursorDistanceTracker cursorTracker;
         private float distance;
         private bool isDragging;
-        private Vector2 mousePosition;
         private Vector2 launchDirection;
         private LineRenderer trajectoryLine;
 
@@ -31,6 +27,7 @@ namespace Assets.Scripts
 
         private void Start()
         {
+            cursorTracker = GetComponent<CursorDistanceTracker>();
             trajectoryLine = GetComponent<LineRenderer>();
             trajectoryLine.enabled = false;
         }
@@ -44,26 +41,20 @@ namespace Assets.Scripts
 
         private void UpdateTrajectory()
         {
-            //Рассчитывает координаты мыши через местоположение мыши на экране 
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Рассчитывает направление запуска объекта
-            launchDirection = new Vector2(initialPosition.position.x - mousePosition.x, initialPosition.position.y - mousePosition.y);
+            //Получение расстояния между курсором и нажатым объектом
+            launchDirection = cursorTracker.CalculateDistanceToObject();
 
-
-            //Рассчитываем силу запуска, если значение < min, то => min, если > max, то => max            
-            //distance = Mathf.Clamp(launchDirection.magnitude, minDistance, maxDistance);
+            //Вычисление начальной скорости
             distance = launchForce / mass;
 
-            //Нормализуем вектор чтобы получить направление вектора в единичном виде
-            launchDirection.Normalize();
             //Ограничение угла
             //Угол в градусах
             float angle = Mathf.Atan2(launchDirection.y, launchDirection.x) * Mathf.Rad2Deg;
             //Проверка и ограничение угла
-            if (angle > 90f)
-                angle = 90f;
-            else if (angle < -5f)
-                angle = -5f;
+            if (angle > AngleLimitationYPositive)
+                angle = AngleLimitationYPositive;
+            else if (angle < AngleLimitationYNegative)
+                angle = AngleLimitationYNegative;
             //Преобразование угла обратно в радианы и создание нового вектора направления
             launchDirection = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)).normalized;
 
@@ -101,6 +92,8 @@ namespace Assets.Scripts
             point.z = 0;
             return point;
         }
+
+        //Выделить из лаунчера и траектории скрипт Clickable Object
         private void OnMouseDown()
         {
             isDragging = true;

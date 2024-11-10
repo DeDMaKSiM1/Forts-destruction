@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 namespace Assets.Scripts.Physics
 {
     public class BlockPhysics : MonoBehaviour
