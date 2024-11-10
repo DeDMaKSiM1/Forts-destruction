@@ -4,31 +4,27 @@ namespace Assets.Scripts.Projectile
 {
     public class ProjectileLauncher : MonoBehaviour
     {
-        [SerializeField] private Transform SpawnPosition;
+        [SerializeField] private Transform spawnPosition;
         [SerializeField] private GameObject ProjectilePrefab;
         [SerializeField] private float launchForce = 100f;
-        private ProjectilePhysics projectile;
-        private ClickableObject clickable;
 
-        public Vector2 LaunchDirection { get; private set; }
-        public float LaunchForce { get => launchForce; }
-        //////
+        private Vector2 launchDirection;
         private CursorDistanceTracker cursorTracker;
-        private void Awake()
-        {
-            cursorTracker = GetComponent<CursorDistanceTracker>();
-            clickable = GetComponent<ClickableObject>();
+        private ProjectilePhysics projectile;
 
-        }
+        public float LaunchForce { get => launchForce; }
+        public Transform SpawnPosition { get => spawnPosition; }
+        public ProjectilePhysics ProjectilePhysics { get => projectile; }
         private void Start()
         {
+            cursorTracker = GetComponent<CursorDistanceTracker>();
+            projectile = ProjectilePrefab.GetComponent<ProjectilePhysics>();
         }
         private void Update()
-        {            
-            if (clickable.IsDragging)
-                LaunchDirection = cursorTracker.CalculateDistanceToObject();
+        {
+            if (ClickableObject.IsDragging)
+                launchDirection = cursorTracker.CalculateDistanceToObject();
         }
-
         public void Launch()
         {
             //Спавн снаряда
@@ -36,18 +32,7 @@ namespace Assets.Scripts.Projectile
             //Создание ссылки на скрипт физики снаряда
             projectile = projectileObject.GetComponent<ProjectilePhysics>();
             //Инициализация начальных значений для расчета полета снаряда
-            projectile.InitializationProjectile(LaunchDirection.normalized, launchForce);
+            projectile.InitializationProjectile(launchDirection.normalized, launchForce);
         }
-
-
-        //private void OnMouseDown()
-        //{
-        //    isDragging = true;
-        //}
-        //private void OnMouseUp()
-        //{
-        //    isDragging = false;
-        //    Launch();
-        //}
     }
 }

@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf842fc9fb4a1749931f70186de1547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPosition: {fileID: 328236370}
+  InitialPosition: {fileID: 328236370}
 --- !u!61 &328236368
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d11cccfda73954ab2ac09e28f3da09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnPosition: {fileID: 328236370}
+  spawnPosition: {fileID: 328236370}
   ProjectilePrefab: {fileID: 8579317605321130862, guid: 452dfb11630fc694086138fc82af9d2e, type: 3}
   launchForce: 10
 --- !u!120 &328236372
@@ -405,11 +405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875498dd0af38c649aebf99a5f4c3770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchForce: 10
-  mass: 1
   AngleLimitationYPositive: 90
   AngleLimitationYNegative: -5
-  initialPosition: {fileID: 328236370}
 --- !u!114 &328236374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,11 +687,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1521931158 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8455705086390143215, guid: 6338cef4e119d664996e474d0102869a, type: 3}
-  m_PrefabInstance: {fileID: 3349662191839525449}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &968405505214135378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -763,6 +755,10 @@ PrefabInstance:
     - target: {fileID: 4983022195892962330, guid: 6338cef4e119d664996e474d0102869a, type: 3}
       propertyPath: m_Name
       value: Launcher V2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983022195892962330, guid: 6338cef4e119d664996e474d0102869a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6797511553048627668, guid: 6338cef4e119d664996e474d0102869a, type: 3}
       propertyPath: projectilePhysics
@@ -834,11 +830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875498dd0af38c649aebf99a5f4c3770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchForce: 10
-  mass: 1
   AngleLimitationYPositive: 0
   AngleLimitationYNegative: 0
-  initialPosition: {fileID: 1521931158}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

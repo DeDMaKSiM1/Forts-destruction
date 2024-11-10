@@ -4,40 +4,28 @@ namespace Assets.Scripts.Projectile
 {
     public class TrajectoryVisualizer : MonoBehaviour
     {
-        [SerializeField] private float launchForce = 10f;
-        [SerializeField] private float mass = 1f;
-
+        //Здесь ограничение есть, в лаунчере нет!!
         //Ограничение угла поворота пушки Y координаты
         [SerializeField] private float AngleLimitationYPositive = 90f;
         [SerializeField] private float AngleLimitationYNegative = -5f;
 
-        //Для гибкости в начале расчета позиции траектории
-        [SerializeField] private Transform initialPosition;
 
-        private ClickableObject clickable;
-        private CursorDistanceTracker cursorTracker;
         private float distance;
         private Vector2 launchDirection;
+        private CursorDistanceTracker cursorTracker;
         private LineRenderer trajectoryLine;
+        private ProjectileLauncher launcher;
 
-        //Ограничение угла поворота пушки X координаты
-        private const float angleLimitationX = 0;
-        //Ограничение длины траектории
-        private const float maxDistance = 10f;
-
-        private void Awake()
-        {
-            cursorTracker = GetComponent<CursorDistanceTracker>();
-            clickable = GetComponent<ClickableObject>();
-        }
         private void Start()
         {
             trajectoryLine = GetComponent<LineRenderer>();
             trajectoryLine.enabled = false;
+            cursorTracker = GetComponent<CursorDistanceTracker>();
+            launcher = GetComponent<ProjectileLauncher>();
         }
         private void Update()
         {
-            if (clickable.IsDragging)
+            if (ClickableObject.IsDragging)
             {
                 UpdateTrajectory();
             }
@@ -49,7 +37,7 @@ namespace Assets.Scripts.Projectile
             launchDirection = cursorTracker.CalculateDistanceToObject();
 
             //Вычисление начальной скорости
-            distance = launchForce / mass;
+            distance = launcher.LaunchForce / launcher.ProjectilePhysics.Mass;
 
             //Ограничение угла
             //Угол в градусах
@@ -90,9 +78,9 @@ namespace Assets.Scripts.Projectile
             //различное поведение траекторий
             Vector3 point /*= initialPosition.position + launchDirection * distance * t * ProjectileSpeed*/;
             //Вычисляем Х
-            point.x = initialPosition.position.x + launchDirection.x * distance * t;
+            point.x = launcher.SpawnPosition.position.x + launchDirection.x * distance * t;
             //Добавляем влияние гравитации
-            point.y = initialPosition.position.y + launchDirection.y * distance * t + 0.5f * gravity * t * t;
+            point.y = launcher.SpawnPosition.position.y + launchDirection.y * distance * t + 0.5f * gravity * t * t;
             point.z = 0;
             return point;
         }

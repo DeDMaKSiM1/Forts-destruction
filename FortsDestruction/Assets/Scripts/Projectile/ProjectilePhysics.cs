@@ -5,27 +5,24 @@ namespace Assets.Scripts.Projectile
     public class ProjectilePhysics : MonoBehaviour
     {
         [SerializeField] private float mass = 1f;
+
         private Rigidbody2D rb;
+        private float initialVelocity;
 
         public float Mass { get => mass; }
-        
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
         }
-
         public void InitializationProjectile(Vector2 launchDirection, float launchForce)
         {
-            float initialVelocity = launchForce / mass;
+            //Вычисление начальной скорости, юнит/с
+            initialVelocity = launchForce / mass;
+            //Вычисление скорости с направлением
             Vector2 velocity = launchDirection * initialVelocity;
-            Debug.Log($"velocity = {velocity}");
-            //float vX = initialVelocity * Mathf.Cos(angle * Mathf.Deg2Rad);
-            //float vY = initialVelocity * Mathf.Sin(angle * Mathf.Deg2Rad);
-
+            //Придача скорости физической составляющей снаряда RigidBody2D
             rb.linearVelocity = velocity;
-            //Debug.Log($" rb.linearVelocity = {velocity}");
-            //rb.linearVelocity = new Vector2(vX * launchDirection.x, vY * launchDirection.y);
-            //Debug.Log($"rb.linearVelocity.x = {vX * launchDirection.x}, y = {vY * launchDirection.y}");
+
         }
     }
 }
