@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-
 namespace Assets.Scripts.HealthSystem
 {
     public class ModifyHealthComponent : MonoBehaviour
@@ -15,6 +14,5 @@ namespace Assets.Scripts.HealthSystem
                 damageable.TakeDamage(ModifyValue);
             }
         }
-
     }
 }

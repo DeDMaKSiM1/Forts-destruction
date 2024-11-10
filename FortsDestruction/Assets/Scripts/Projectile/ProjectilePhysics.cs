@@ -8,7 +8,6 @@ namespace Assets.Scripts.Projectile
 
         private Rigidbody2D rb;
         private float initialVelocity;
-
         public float Mass { get => mass; }
         private void Awake()
         {

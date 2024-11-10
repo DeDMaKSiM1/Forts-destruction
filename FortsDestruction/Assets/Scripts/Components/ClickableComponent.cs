@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-
-namespace Assets.Scripts
+namespace Assets.Scripts.Components
 {
-    public class ClickableObject : MonoBehaviour
+    public class ClickableComponent : MonoBehaviour
     {
         public UnityEvent MouseDown;
         public UnityEvent MouseUp;

@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Assets.Scripts.HealthSystem
 {
     public interface IDamageable

@@ -220,7 +220,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 5735174950088229882}
-        m_TargetAssemblyTypeName: Assets.Scripts.LayerChanger, Assembly-CSharp
+        m_TargetAssemblyTypeName: Assets.Scripts.Components.LayerChangerComponent,
+          Assembly-CSharp
         m_MethodName: ToChangeLayer
         m_Mode: 1
         m_Arguments:
@@ -278,7 +279,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 639374275513006562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaea256a6eaf7854eb22fd205158c181, type: 3}
+  m_Script: {fileID: 11500000, guid: ed48fb61f2eccb64882dad60ef98594d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LayerName: ParticlyNonCollidable
@@ -291,6 +292,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 639374275513006562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09910e8cafb15c468d6e018c829cd24, type: 3}
+  m_Script: {fileID: 11500000, guid: 17e4e7d2caf44ab4baaee6df5c5b0d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

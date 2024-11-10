@@ -1,18 +1,13 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Components;
+using UnityEngine;
 
 namespace Assets.Scripts.Projectile
 {
     public class TrajectoryVisualizer : MonoBehaviour
     {
-        //Здесь ограничение есть, в лаунчере нет!!
-        //Ограничение угла поворота пушки Y координаты
-        [SerializeField] private float AngleLimitationYPositive = 90f;
-        [SerializeField] private float AngleLimitationYNegative = -5f;
-
-
         private float distance;
         private Vector2 launchDirection;
-        private CursorDistanceTracker cursorTracker;
+        private LaunchDirectionCalculator cursorTracker;
         private LineRenderer trajectoryLine;
         private ProjectileLauncher launcher;
 
@@ -20,12 +15,12 @@ namespace Assets.Scripts.Projectile
         {
             trajectoryLine = GetComponent<LineRenderer>();
             trajectoryLine.enabled = false;
-            cursorTracker = GetComponent<CursorDistanceTracker>();
+            cursorTracker = GetComponent<LaunchDirectionCalculator>();
             launcher = GetComponent<ProjectileLauncher>();
         }
         private void Update()
         {
-            if (ClickableObject.IsDragging)
+            if (ClickableComponent.IsDragging)
             {
                 UpdateTrajectory();
             }
@@ -34,23 +29,11 @@ namespace Assets.Scripts.Projectile
         private void UpdateTrajectory()
         {
             //Получение расстояния между курсором и нажатым объектом
-            launchDirection = cursorTracker.CalculateDistanceToObject();
+            launchDirection = cursorTracker.DirectionCalc();
 
             //Вычисление начальной скорости
             distance = launcher.LaunchForce / launcher.ProjectilePhysics.Mass;
 
-            //Ограничение угла
-            //Угол в градусах
-            float angle = Mathf.Atan2(launchDirection.y, launchDirection.x) * Mathf.Rad2Deg;
-            //Проверка и ограничение угла
-            if (angle > AngleLimitationYPositive)
-                angle = AngleLimitationYPositive;
-            else if (angle < AngleLimitationYNegative)
-                angle = AngleLimitationYNegative;
-            //Преобразование угла обратно в радианы и создание нового вектора направления
-            launchDirection = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)).normalized;
-
-            //Debug.Log(angle);
             //Устанавливаем количество точек на линии
             int segments = 20;
             //Прибавляем 1 чтобы включить конечную точку линии

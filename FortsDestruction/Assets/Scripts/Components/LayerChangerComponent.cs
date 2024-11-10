@@ -1,10 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-
-namespace Assets.Scripts
+namespace Assets.Scripts.Components
 {
-    public class LayerChanger: MonoBehaviour
+    public class LayerChangerComponent: MonoBehaviour
     {
         [SerializeField] private string LayerName;
 

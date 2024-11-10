@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Components;
+using UnityEngine;
 
 namespace Assets.Scripts.Projectile
 {
@@ -9,7 +10,7 @@ namespace Assets.Scripts.Projectile
         [SerializeField] private float launchForce = 100f;
 
         private Vector2 launchDirection;
-        private CursorDistanceTracker cursorTracker;
+        private LaunchDirectionCalculator cursorTracker;
         private ProjectilePhysics projectile;
 
         public float LaunchForce { get => launchForce; }
@@ -17,13 +18,13 @@ namespace Assets.Scripts.Projectile
         public ProjectilePhysics ProjectilePhysics { get => projectile; }
         private void Start()
         {
-            cursorTracker = GetComponent<CursorDistanceTracker>();
+            cursorTracker = GetComponent<LaunchDirectionCalculator>();
             projectile = ProjectilePrefab.GetComponent<ProjectilePhysics>();
         }
         private void Update()
         {
-            if (ClickableObject.IsDragging)
-                launchDirection = cursorTracker.CalculateDistanceToObject();
+            if (ClickableComponent.IsDragging)
+                launchDirection = cursorTracker.DirectionCalc();
         }
         public void Launch()
         {

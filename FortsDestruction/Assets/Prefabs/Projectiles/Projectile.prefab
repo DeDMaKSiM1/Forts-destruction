@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8970499897095928016}
   - component: {fileID: 3492388785359317906}
   - component: {fileID: 6411542779016348103}
-  - component: {fileID: 8925597366094080441}
+  - component: {fileID: 7908105230773121100}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Projectile
@@ -33,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -207,10 +207,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8579317605321130862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09910e8cafb15c468d6e018c829cd24, type: 3}
+  m_Script: {fileID: 11500000, guid: 17e4e7d2caf44ab4baaee6df5c5b0d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8925597366094080441
+--- !u!114 &7908105230773121100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,3 +222,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b087f137b9ec6499048951be9b3606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 1
