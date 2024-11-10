@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,14 +14,23 @@ namespace Assets.Scripts
 
         public Vector2 CalculateDistanceToObject()
         {
-            //Рассчитывает координаты мыши через местоположение мыши на экране 
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Рассчитывает направление запуска объекта
-            launchDirection = new Vector2(initialPosition.position.x - mousePosition.x, initialPosition.position.y - mousePosition.y);
+            try
+            {
+                //Рассчитывает координаты мыши через местоположение мыши на экране 
+                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                //Рассчитывает направление запуска объекта
+                launchDirection = new Vector2(initialPosition.position.x - mousePosition.x, initialPosition.position.y - mousePosition.y);
 
-            //Нормализуем вектор чтобы получить направление вектора в единичном виде
-            launchDirection.Normalize();
+                //Нормализуем вектор чтобы получить направление вектора в единичном виде
+                launchDirection.Normalize();
+                
+            }
+            catch(Exception ex)
+            {
+                Debug.Log(ex.Message);
+            }
             return launchDirection;
+
         }
 
     }

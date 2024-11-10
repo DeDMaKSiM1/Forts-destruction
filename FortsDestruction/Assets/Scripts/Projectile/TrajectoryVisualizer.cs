@@ -14,9 +14,9 @@ namespace Assets.Scripts.Projectile
         //Для гибкости в начале расчета позиции траектории
         [SerializeField] private Transform initialPosition;
 
+        private ClickableObject clickable;
         private CursorDistanceTracker cursorTracker;
         private float distance;
-        private bool isDragging;
         private Vector2 launchDirection;
         private LineRenderer trajectoryLine;
 
@@ -25,15 +25,19 @@ namespace Assets.Scripts.Projectile
         //Ограничение длины траектории
         private const float maxDistance = 10f;
 
-        private void Start()
+        private void Awake()
         {
             cursorTracker = GetComponent<CursorDistanceTracker>();
+            clickable = GetComponent<ClickableObject>();
+        }
+        private void Start()
+        {
             trajectoryLine = GetComponent<LineRenderer>();
             trajectoryLine.enabled = false;
         }
         private void Update()
         {
-            if (isDragging)
+            if (clickable.IsDragging)
             {
                 UpdateTrajectory();
             }
@@ -93,17 +97,7 @@ namespace Assets.Scripts.Projectile
             return point;
         }
 
-        //Выделить из лаунчера и траектории скрипт Clickable Object
-        private void OnMouseDown()
-        {
-            isDragging = true;
-            trajectoryLine.enabled = true;
-        }
-        private void OnMouseUp()
-        {
-            isDragging = false;
-            trajectoryLine.enabled = false;
-        }
+
 
 
     }

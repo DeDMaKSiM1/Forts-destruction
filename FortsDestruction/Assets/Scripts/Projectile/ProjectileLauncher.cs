@@ -7,24 +7,29 @@ namespace Assets.Scripts.Projectile
         [SerializeField] private Transform SpawnPosition;
         [SerializeField] private GameObject ProjectilePrefab;
         [SerializeField] private float launchForce = 100f;
-        private bool isDragging;
         private ProjectilePhysics projectile;
+        private ClickableObject clickable;
 
         public Vector2 LaunchDirection { get; private set; }
         public float LaunchForce { get => launchForce; }
         //////
         private CursorDistanceTracker cursorTracker;
-        private void Start()
+        private void Awake()
         {
             cursorTracker = GetComponent<CursorDistanceTracker>();
+            clickable = GetComponent<ClickableObject>();
+
+        }
+        private void Start()
+        {
         }
         private void Update()
-        {
-            if (isDragging)
+        {            
+            if (clickable.IsDragging)
                 LaunchDirection = cursorTracker.CalculateDistanceToObject();
         }
 
-        private void Launch()
+        public void Launch()
         {
             //Спавн снаряда
             GameObject projectileObject = Instantiate(ProjectilePrefab, SpawnPosition.position, Quaternion.identity);
@@ -35,14 +40,14 @@ namespace Assets.Scripts.Projectile
         }
 
 
-        private void OnMouseDown()
-        {
-            isDragging = true;
-        }
-        private void OnMouseUp()
-        {
-            isDragging = false;
-            Launch();
-        }
+        //private void OnMouseDown()
+        //{
+        //    isDragging = true;
+        //}
+        //private void OnMouseUp()
+        //{
+        //    isDragging = false;
+        //    Launch();
+        //}
     }
 }
