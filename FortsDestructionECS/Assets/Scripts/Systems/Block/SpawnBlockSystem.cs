@@ -1,5 +1,6 @@
 ﻿
 using Assets.Scripts.ComponentsAndTags;
+using Assets.Scripts.ComponentsAndTags.Block;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;

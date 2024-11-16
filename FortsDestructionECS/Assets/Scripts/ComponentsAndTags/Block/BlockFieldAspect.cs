@@ -4,7 +4,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace Assets.Scripts.ComponentsAndTags
+namespace Assets.Scripts.ComponentsAndTags.Block
 {
     //Определяет аспект, который упрощает доступ к данным ECS
     public readonly partial struct BlockFieldAspect : IAspect

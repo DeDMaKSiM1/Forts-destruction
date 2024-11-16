@@ -3,8 +3,9 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Random = Unity.Mathematics.Random;
 using Assets.Scripts.ComponentsAndTags;
+using Assets.Scripts.ComponentsAndTags.Block;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.AuthoringAndMono
 {
     //Класс MonoBehavior для настройки поля блоков в Unity
     public class BlockFieldMono : MonoBehaviour
