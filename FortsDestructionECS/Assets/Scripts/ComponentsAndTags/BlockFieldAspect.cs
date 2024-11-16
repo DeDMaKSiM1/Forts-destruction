@@ -11,6 +11,7 @@ namespace Assets.Scripts.ComponentsAndTags
         public readonly Entity Entity;
 
         private readonly RefRW<LocalTransform> _transform;
+        private LocalTransform Transform => _transform.ValueRO;
 
         private readonly RefRO<BlockFieldProperties> _blockProperties;
         private readonly RefRW<BlockFieldRandom> _blockFieldRandom;
@@ -31,9 +32,23 @@ namespace Assets.Scripts.ComponentsAndTags
         private float3 GetRandomPosition()
         {
             float3 randomPosition;
+            do
+            {
+                randomPosition = _blockFieldRandom.ValueRW.Value.NextFloat3(MinCorner, MaxCorner);
 
-            randomPosition = _blockFieldRandom.ValueRW.Value.NextFloat3(-7, 7);
+            }
+            while (math.distancesq(Transform.Position, randomPosition) <= NEUTRAL_ZONE_RADIUS);
+
             return randomPosition;
         }
+        private float3 MinCorner => Transform.Position - HalfDimensions;
+        private float3 MaxCorner => Transform.Position + HalfDimensions;
+        private float3 HalfDimensions => new()
+        {
+            x = _blockProperties.ValueRO.BlockFieldSize.x,
+            y = _blockProperties.ValueRO.BlockFieldSize.y,
+            z = 0f
+        };
+        private const float NEUTRAL_ZONE_RADIUS = 20;
     }
 }
