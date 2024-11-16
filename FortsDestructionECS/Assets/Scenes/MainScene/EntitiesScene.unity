@@ -149,11 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockFieldSize:
-    x: 2
-    y: 2
-  NumberOfBLocksToSpawn: 2
+    x: 8
+    y: 4
+  NumberOfBlocksToSpawn: 200
   BlockPrefab: {fileID: 2084220468443117945, guid: 42db2cec27a360a44b0ca6f43d37ca56, type: 3}
-  RandomSeed: 10
+  RandomSeed: 100
 --- !u!4 &745859856
 Transform:
   m_ObjectHideFlags: 0
