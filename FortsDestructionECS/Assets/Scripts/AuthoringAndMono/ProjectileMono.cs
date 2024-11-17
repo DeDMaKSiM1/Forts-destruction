@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.ComponentsAndTags.Projectile;
+﻿using Assets.Scripts.ComponentsAndTags;
+using Assets.Scripts.ComponentsAndTags.Projectile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace Assets.Scripts.AuthoringAndMono
             {
                 ProjectilePrefab = GetEntity(authoring.ProjectilePrefab, TransformUsageFlags.Dynamic)
             });
+
         }
     }
 }

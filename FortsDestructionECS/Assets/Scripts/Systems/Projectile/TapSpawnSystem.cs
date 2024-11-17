@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.ComponentsAndTags.Projectile;
+﻿using Assets.Scripts.ComponentsAndTags;
+using Assets.Scripts.ComponentsAndTags.Projectile;
 using System.Linq.Expressions;
 using Unity.Burst;
 using Unity.Collections;
@@ -13,33 +14,31 @@ namespace Assets.Scripts.Systems.Projectile
     [UpdateInGroup(typeof(SimulationSystemGroup))]
     public partial struct TapSpawnSystem : ISystem
     {
-
+        [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<ProjectileProperties>();
         }
+        [BurstCompile]
         public void OnDestroy() { }
-
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                var screenPosition = Input.mousePosition;
-                var worldPosition = Camera.main.ScreenToWorldPoint(new float3(screenPosition.x, screenPosition.y, 2f));
+                var projectileEntity = SystemAPI.GetSingletonEntity<ProjectileProperties>();
+                var projectile = SystemAPI.GetAspect<ProjectileAspect>(projectileEntity);
+
                 var ecb = new EntityCommandBuffer(Allocator.Temp);
 
-                var projectilePrefab = SystemAPI.GetSingleton<ProjectileProperties>().ProjectilePrefab;
-                var projectileEntity = ecb.Instantiate(projectilePrefab);
+                var newProjectile = ecb.Instantiate(projectile.ProjectilePrefab);
+                var newProjectileTransform = projectile.GetProjectileTransform();
 
-                ecb.SetComponent(projectileEntity, new LocalTransform
-                {
-                    Position = worldPosition,
-                    Rotation = quaternion.identity,
-                    Scale = 1f
-                });
+                ecb.SetComponent(newProjectile, newProjectileTransform);
                 ecb.Playback(state.EntityManager);
-                ecb.Dispose();
             }
         }
     }
+
+
 }
