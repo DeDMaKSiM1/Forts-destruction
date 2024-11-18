@@ -22,7 +22,6 @@ public sealed class HealthSystem : UpdateSystem
         foreach (var entity in this.filter)
         {
             ref var healthComponent = ref entity.GetComponent<HealthComponent>();
-            Debug.Log(healthComponent.healthPoint);
         }
     }
 }
