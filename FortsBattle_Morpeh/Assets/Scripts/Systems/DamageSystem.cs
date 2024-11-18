@@ -34,7 +34,10 @@ public sealed class DamageSystem : UpdateSystem
     private void ApplyDamage(EntityId entityId, float damage)
     {
         if (World.TryGetEntity(entityId, out var entity))
-            entity.GetComponent<HealthComponent>().healthPoint -= damage;
-
+        {
+            var entityHealth = entity.GetComponent<HealthComponent>().healthPoint -= damage;
+            if (entityHealth <= 0)
+                entity.SetComponent(new IsDeadTag());
+        }
     }
 }
