@@ -6,5 +6,6 @@ namespace Assets.Scripts.ComponentsAndTags.Projectile
     {
         public Entity ProjectilePrefab;
         public float Speed;
+
     }
 }

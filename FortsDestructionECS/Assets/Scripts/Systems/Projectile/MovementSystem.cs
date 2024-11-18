@@ -1,7 +1,9 @@
 ﻿
 using Assets.Scripts.ComponentsAndTags;
+using Assets.Scripts.ComponentsAndTags.Projectile;
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace Assets.Scripts.Systems
@@ -21,10 +23,11 @@ namespace Assets.Scripts.Systems
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
-            foreach (var (transform, speed) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<SpeedComponent>>())
+
+            new ProjectileMoveJob
             {
-                transform.ValueRW.Position += new Unity.Mathematics.float3(0, 0, speed.ValueRO.Speed * deltaTime);
-            }
+                DeltaTime = deltaTime,
+            }.ScheduleParallel();
         }
     }
 
@@ -32,20 +35,10 @@ namespace Assets.Scripts.Systems
     public partial struct ProjectileMoveJob : IJobEntity
     {
         public float DeltaTime;
-        public float BrainRadiusSq;
-        public EntityCommandBuffer.ParallelWriter ECB;
-
-
-        [BurstCompile]
-        private void Execute(ZombieWalkAspect zombie, [ChunkIndexInQuery] int sortKey)
+        public float speed;
+        void Execute(ProjectileAspect projectile)
         {
-            zombie.Walk(DeltaTime);
-            if (zombie.IsInStoppingRange(float3.zero, BrainRadiusSq))
-            {
-                ECB.SetComponentEnabled<ZombieWalkProperties>(sortKey, zombie.Entity, false);
-                ECB.SetComponentEnabled<ZombieEatProperties>(sortKey, zombie.Entity, true);
-            }
-
+            projectile.Move(DeltaTime);
         }
     }
 }

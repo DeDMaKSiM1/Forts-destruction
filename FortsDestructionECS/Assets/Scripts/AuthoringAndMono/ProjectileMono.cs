@@ -13,6 +13,7 @@ namespace Assets.Scripts.AuthoringAndMono
     public class ProjectileMono : MonoBehaviour
     {
         public GameObject ProjectilePrefab;
+        public float Speed;
     }
 
     public class ProjectileBaker : Baker<ProjectileMono>
@@ -22,7 +23,8 @@ namespace Assets.Scripts.AuthoringAndMono
             var projectileEntity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent(projectileEntity, new ProjectileProperties
             {
-                ProjectilePrefab = GetEntity(authoring.ProjectilePrefab, TransformUsageFlags.Dynamic)
+                ProjectilePrefab = GetEntity(authoring.ProjectilePrefab, TransformUsageFlags.Dynamic),
+                Speed = authoring.Speed,
             });
 
         }

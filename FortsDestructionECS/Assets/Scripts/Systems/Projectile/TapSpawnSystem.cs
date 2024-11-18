@@ -6,6 +6,7 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.Systems.Projectile
@@ -35,7 +36,11 @@ namespace Assets.Scripts.Systems.Projectile
                 var newProjectileTransform = projectile.GetProjectileTransform();
 
                 ecb.SetComponent(newProjectile, newProjectileTransform);
+
+
+
                 ecb.Playback(state.EntityManager);
+                ecb.Dispose();
             }
         }
     }

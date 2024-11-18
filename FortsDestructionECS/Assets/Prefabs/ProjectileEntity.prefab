@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8120911734254220308}
   - component: {fileID: 4407860938989495963}
+  - component: {fileID: -8017417565591609312}
   m_Layer: 0
   m_Name: ProjectileEntity
   m_TagString: Untagged
@@ -87,3 +88,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-8017417565591609312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442464326514360186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f74d4176afe70428b65e856662d348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectilePrefab: {fileID: 442464326514360186}
+  Speed: 2

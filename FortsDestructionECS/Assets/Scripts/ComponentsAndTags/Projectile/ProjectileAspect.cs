@@ -5,6 +5,8 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Assets.Scripts.ComponentsAndTags.Projectile
 {
@@ -18,9 +20,10 @@ namespace Assets.Scripts.ComponentsAndTags.Projectile
 
         //Свойство для получения префаба снаряда
         public Entity ProjectilePrefab => _projectileProperties.ValueRO.ProjectilePrefab;
+        public float ProjectileSpeed => _projectileProperties.ValueRO.Speed;
 
- 
-        
+
+        private readonly RefRW<LocalTransform> _transform;
 
         //Метод, возвращающий Transform для снаряда
         public LocalTransform GetProjectileTransform()
@@ -33,10 +36,10 @@ namespace Assets.Scripts.ComponentsAndTags.Projectile
                 Scale = 1f
             };
         }
-
-
-
-
+        public void Move(float deltaTime)
+        {
+            _transform.ValueRW.Position += _transform.ValueRO.Forward() * ProjectileSpeed;
+        }
 
         private float3 GetMousePosition()
         {
