@@ -9,4 +9,5 @@ using Unity.IL2CPP.CompilerServices;
 public struct HealthComponent : IComponent
 {
     public float healthPoint;
+    public GameObject gameObject;
 }

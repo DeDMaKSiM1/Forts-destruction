@@ -1,5 +1,5 @@
 using Scellecs.Morpeh;
-public struct DamageEvents : IEventData
+public struct DamageEvent : IEventData
 {
     public EntityId TargetEntityId;
 }

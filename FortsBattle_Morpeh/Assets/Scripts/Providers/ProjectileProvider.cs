@@ -10,13 +10,11 @@ public sealed class ProjectileProvider : MonoProvider<ProjectileTag>
 {
     [SerializeField] private float projectileDamage;
 
-    private HealthProvider healthProvider;
     private Request<DamageRequest> _damageRequest;
 
     protected override void Initialize()
     {
         _damageRequest = World.Default.GetRequest<DamageRequest>();
-        healthProvider = GetComponent<HealthProvider>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

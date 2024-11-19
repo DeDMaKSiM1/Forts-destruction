@@ -6,9 +6,10 @@ using UnityEngine;
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-public sealed class BlockProvider : MonoProvider<BlockTag>
+public sealed class BlockProvider : MonoProvider<BlockComponent>
 {
     [SerializeField] private float blockDamage;
+
     private Request<DamageRequest> _damageRequest;
 
     protected override void Initialize()

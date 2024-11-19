@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedData:
     healthPoint: 100
+    gameObject: {fileID: 8379760234407704863}
 --- !u!114 &6453024145147289144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +191,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b98e6efac5d1124cae182b541afbfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializedData:
-    Force: 10
-    Rb: {fileID: 3278540037244690102}
-  damage: 10
+  projectileDamage: 0

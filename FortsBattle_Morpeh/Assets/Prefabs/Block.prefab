@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6669092879671498599}
   - component: {fileID: 6458041308950527554}
   - component: {fileID: 248991005207295014}
-  - component: {fileID: 2633967012117473463}
   - component: {fileID: 4063223799848711786}
+  - component: {fileID: 2633967012117473463}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -121,7 +121,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -164,6 +164,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4063223799848711786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009301828973959122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04489552144e88f4d8dcf08ea910d8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    rb: {fileID: 248991005207295014}
+    Force: 0
+    IsDynamic: 0
+  blockDamage: 10
 --- !u!114 &2633967012117473463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,18 +195,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedData:
     healthPoint: 10
---- !u!114 &4063223799848711786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9009301828973959122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04489552144e88f4d8dcf08ea910d8e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializedData:
-    healthPoint: 10
-  damage: 10
+    gameObject: {fileID: 9009301828973959122}

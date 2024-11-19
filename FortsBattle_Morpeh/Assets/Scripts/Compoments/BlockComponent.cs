@@ -6,7 +6,9 @@ using Unity.IL2CPP.CompilerServices;
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-public struct MovementComponent : IComponent
+public struct BlockComponent  : IComponent
 {
-    //public 
+    public Rigidbody2D rb;
+    public float Force;
+    public bool IsDynamic;
 }

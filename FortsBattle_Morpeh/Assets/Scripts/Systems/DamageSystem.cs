@@ -10,11 +10,12 @@ using Scellecs.Morpeh;
 public sealed class DamageSystem : UpdateSystem
 {
     private Request<DamageRequest> _damageRequest;
-    private Event<DamageEvents> _damageEvents;
+    private Event<DamageEvent> _damageEvents;
+    private bool _isNeedToDestroy;
     public override void OnAwake()
     {
         _damageRequest = World.GetRequest<DamageRequest>();
-        _damageEvents = World.GetEvent<DamageEvents>();
+        _damageEvents = World.GetEvent<DamageEvent>();
     }
 
     public override void OnUpdate(float deltaTime)
@@ -22,22 +23,27 @@ public sealed class DamageSystem : UpdateSystem
 
         foreach (var request in _damageRequest.Consume())
         {
-            
             ApplyDamage(request.TargetEntityId, request.Damage);
 
-            _damageEvents.NextFrame(new DamageEvents
+            if (_isNeedToDestroy)
             {
-                TargetEntityId = request.TargetEntityId,
-            });
+                _damageEvents.NextFrame(new DamageEvent
+                {
+                    TargetEntityId = request.TargetEntityId,
+                });
+            }
         }
     }
     private void ApplyDamage(EntityId entityId, float damage)
     {
         if (World.TryGetEntity(entityId, out var entity))
         {
-            var entityHealth = entity.GetComponent<HealthComponent>().healthPoint -= damage;
-            if (entityHealth <= 0)
-                entity.SetComponent(new IsDeadTag());
+            var healthComponent = entity.GetComponent<HealthComponent>().healthPoint -= damage;
+            if (healthComponent <= 0)
+            {
+            }
         }
+            
+
     }
 }
