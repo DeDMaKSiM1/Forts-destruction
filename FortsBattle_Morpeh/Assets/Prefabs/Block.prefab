@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6458041308950527554}
   - component: {fileID: 248991005207295014}
   - component: {fileID: 2633967012117473463}
+  - component: {fileID: 4063223799848711786}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -177,3 +178,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedData:
     healthPoint: 10
+--- !u!114 &4063223799848711786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009301828973959122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04489552144e88f4d8dcf08ea910d8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    healthPoint: 10
+  damage: 10

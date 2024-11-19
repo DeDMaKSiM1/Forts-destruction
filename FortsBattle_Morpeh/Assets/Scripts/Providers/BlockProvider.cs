@@ -6,9 +6,9 @@ using UnityEngine;
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-public sealed class BlockProvider : MonoProvider<HealthComponent>
+public sealed class BlockProvider : MonoProvider<BlockTag>
 {
-    [SerializeField] private float damage;
+    [SerializeField] private float blockDamage;
     private Request<DamageRequest> _damageRequest;
 
     protected override void Initialize()
@@ -20,11 +20,11 @@ public sealed class BlockProvider : MonoProvider<HealthComponent>
     {
         if (collision.gameObject.TryGetComponent(out HealthProvider healthProvider))
         {
-            _damageRequest.Publish(new DamageRequest
+           _damageRequest.Publish(new DamageRequest
             {
                 TargetEntityId = healthProvider.Entity.ID,
-                Damage = damage
-            });
+                Damage = blockDamage
+           });
         }
 
     }
