@@ -11,7 +11,6 @@ public sealed class DamageSystem : UpdateSystem
 {
     private Request<DamageRequest> _damageRequest;
     private Event<DamageEvent> _damageEvents;
-    private bool _isNeedToDestroy;
     public override void OnAwake()
     {
         _damageRequest = World.GetRequest<DamageRequest>();
@@ -25,13 +24,10 @@ public sealed class DamageSystem : UpdateSystem
         {
             ApplyDamage(request.TargetEntityId, request.Damage);
 
-            if (_isNeedToDestroy)
+            _damageEvents.NextFrame(new DamageEvent
             {
-                _damageEvents.NextFrame(new DamageEvent
-                {
-                    TargetEntityId = request.TargetEntityId,
-                });
-            }
+                TargetEntityId = request.TargetEntityId,
+            });
         }
     }
     private void ApplyDamage(EntityId entityId, float damage)
@@ -39,11 +35,6 @@ public sealed class DamageSystem : UpdateSystem
         if (World.TryGetEntity(entityId, out var entity))
         {
             var healthComponent = entity.GetComponent<HealthComponent>().healthPoint -= damage;
-            if (healthComponent <= 0)
-            {
-            }
         }
-            
-
     }
 }

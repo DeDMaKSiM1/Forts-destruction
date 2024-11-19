@@ -6,7 +6,7 @@ using UnityEngine;
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-public sealed class ProjectileProvider : MonoProvider<ProjectileTag>
+public sealed class ProjectileProvider : MonoProvider<ProjectileComponent>
 {
     [SerializeField] private float projectileDamage;
 
