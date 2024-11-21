@@ -10,24 +10,17 @@ using System;
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(DestroySystem))]
 public sealed class DestroySystem : UpdateSystem
 {
-    private Event<DamageEvent> _damageEvent;
-
-    public float gravity = -9.81f;
-    public float initialVelocity = 0f;
-    private float velocity;
-    private float height;
+    private Filter filter;
     public override void OnAwake()
     {
-        _damageEvent = World.GetEvent<DamageEvent>();
-        velocity = initialVelocity;
-        
+        filter =  this.World.Filter.With<DeadTag>().Build();
     }
 
     public override void OnUpdate(float deltaTime)
     {
-        foreach (var events in _damageEvent.publishedChanges)
+        foreach (var entity in filter)
         {
-            Destroy(events.TargetEntityId);
+            Destroy(entity.ID);
         }
     }
     private void Destroy(EntityId target)
@@ -44,9 +37,9 @@ public sealed class DestroySystem : UpdateSystem
 
                 if (entity.Has<BlockComponent>())
                 {
-                    ref var blockTransfom = ref entity.GetComponent<MovementComponent>();
-                    
-                    //Destroy(healthComponent.gameObject);
+                    //ref var blockTransfom = ref entity.GetComponent<MovementComponent>();
+
+                    Destroy(healthComponent.gameObject);
 
                 }
                 else if (entity.Has<ProjectileComponent>())
