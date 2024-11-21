@@ -10,4 +10,5 @@ public struct MovementComponent : IComponent
 {
     public Vector2 position;
     public float Force;
+    public GameObject game;
 }
