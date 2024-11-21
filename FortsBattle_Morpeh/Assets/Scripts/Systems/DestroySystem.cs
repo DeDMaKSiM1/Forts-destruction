@@ -2,6 +2,7 @@ using Scellecs.Morpeh.Systems;
 using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 using Scellecs.Morpeh;
+using System;
 
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
@@ -11,7 +12,16 @@ public sealed class DestroySystem : UpdateSystem
 {
     private Event<DamageEvent> _damageEvent;
 
-    public override void OnAwake() => _damageEvent = World.GetEvent<DamageEvent>();
+    public float gravity = -9.81f;
+    public float initialVelocity = 0f;
+    private float velocity;
+    private float height;
+    public override void OnAwake()
+    {
+        _damageEvent = World.GetEvent<DamageEvent>();
+        velocity = initialVelocity;
+        
+    }
 
     public override void OnUpdate(float deltaTime)
     {
@@ -24,24 +34,25 @@ public sealed class DestroySystem : UpdateSystem
     {
         if (World.TryGetEntity(target, out var entity))
         {
+            if (!entity.Has<HealthComponent>())
+            {
+                return;
+            }
             var healthComponent = entity.GetComponent<HealthComponent>();
             if (healthComponent.healthPoint <= 0)
             {
-                Destroy(healthComponent.gameObject);
 
-                //if (entity.Has<BlockComponent>())
-                //{
-                //    //ref var blockPhysics = ref entity.GetComponent<MovementComponent>();
-                //    //blockPhysics.rb.bodyType = RigidbodyType2D.Dynamic;
-                //    //blockPhysics.rb.AddForce(new Vector2(20 * blockPhysics.Force, 40 * blockPhysics.Force));
-                //    //Destroy(healthComponent.gameObject);
+                if (entity.Has<BlockComponent>())
+                {
+                    ref var blockTransfom = ref entity.GetComponent<MovementComponent>();
+                    
+                    //Destroy(healthComponent.gameObject);
 
-                //}
-                //else if (entity.Has<ProjectileComponent>())
-                //{
-                //    Debug.Log("Снаряд уничтожен");
-                //    Destroy(healthComponent.gameObject);
-                //}
+                }
+                else if (entity.Has<ProjectileComponent>())
+                {
+                    Destroy(healthComponent.gameObject);
+                }
             }
         }
     }

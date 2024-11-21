@@ -34,7 +34,11 @@ public sealed class DamageSystem : UpdateSystem
     {
         if (World.TryGetEntity(entityId, out var entity))
         {
-            var healthComponent = entity.GetComponent<HealthComponent>().healthPoint -= damage;
+            var health = entity.GetComponent<HealthComponent>().healthPoint -= damage;
+            if (health <= 0)
+            {
+                entity.SetComponent(new DeadTag { });
+            }
         }
     }
 }
