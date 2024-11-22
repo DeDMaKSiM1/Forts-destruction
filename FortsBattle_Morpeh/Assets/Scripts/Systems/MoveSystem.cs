@@ -4,6 +4,7 @@
 //using Scellecs.Morpeh;
 //using Scellecs.Morpeh.Native;
 //using Unity.Jobs;
+//using UnityEngine.Jobs;
 
 //[Il2CppSetOption(Option.NullChecks, false)]
 //[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
@@ -17,7 +18,7 @@
 
 //    public override void OnAwake()
 //    {
-//        filter = this.World.Filter.With<MovementComponent>().With<DeadTag>().Build();
+//        filter = this.World.Filter.With<DeadTag>().Build();
 //        stash = this.World.GetStash<MovementComponent>();
 //    }
 
@@ -26,11 +27,11 @@
 //        var nativeFilter = this.filter.AsNative();
 
 //        Debug.Log("Внутри Job инициализации");
-//        var parallelJob = new MoveJob
+//        var parallelJob2q = new MoveJob
 //        {
 //            entities = nativeFilter,
 //            moveComponent = stash.AsNative()
 //        };
-//        World.JobHandle = parallelJob.Schedule(nativeFilter.length, 64, World.JobHandle);
+//        World.JobHandle = parallelJob.Schedule(new TransformAccessArray { });
 //    }
 //}

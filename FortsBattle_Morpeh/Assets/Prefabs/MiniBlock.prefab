@@ -206,6 +206,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializedData:
-    rb: {fileID: 248991005207295014}
+    Transform: {fileID: 1774551917298378469}
     Force: 10
-    IsKinematic: 1

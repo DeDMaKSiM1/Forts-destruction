@@ -304,7 +304,7 @@ Transform:
   m_GameObject: {fileID: 464352752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 30, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -738,9 +738,7 @@ MonoBehaviour:
     system: {fileID: 11400000, guid: 6405cb037575d8a4daa197a113fc739c, type: 2}
   - enabled: 1
     system: {fileID: 11400000, guid: 1913aec8fd771cc45afcab29c0c8adae, type: 2}
-  fixedUpdateSystems:
-  - enabled: 1
-    system: {fileID: 11400000, guid: fb8420c0e8262c945aa52298d1b94d21, type: 2}
+  fixedUpdateSystems: []
   lateUpdateSystems: []
   cleanupSystems: []
 --- !u!4 &1173157596
@@ -1061,11 +1059,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4286203104413700606, guid: 6ff4b15c47665e94f8b71726d603fdd2, type: 3}
       propertyPath: serializedData.healthPoint
-      value: 6000
+      value: 9000
       objectReference: {fileID: 0}
     - target: {fileID: 4582556216310290899, guid: 6ff4b15c47665e94f8b71726d603fdd2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -0.48
       objectReference: {fileID: 0}
     - target: {fileID: 4582556216310290899, guid: 6ff4b15c47665e94f8b71726d603fdd2, type: 3}
       propertyPath: m_LocalPosition.y
