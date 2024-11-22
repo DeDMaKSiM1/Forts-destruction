@@ -9,6 +9,7 @@ using Unity.IL2CPP.CompilerServices;
 public struct MovementComponent : IComponent
 {
     public Transform Transform;
+    public Vector3 Velocity;
+    public float ThrowForce;
     public Vector3 GetPosition() => Transform.position;
-    public float Force;
 }

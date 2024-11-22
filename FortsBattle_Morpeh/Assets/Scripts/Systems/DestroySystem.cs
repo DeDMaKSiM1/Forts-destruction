@@ -5,33 +5,43 @@ using Scellecs.Morpeh;
 using System.Collections.Generic;
 using Scellecs.Morpeh.Native;
 using UnityEngine.Jobs;
+using Unity;
+using Unity.Mathematics;
 
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(DestroySystem))]
-public sealed class DestroySystem : UpdateSystem
+public sealed class DestroySystem : FixedUpdateSystem
 {
     private Filter deadFilter;
-    private Filter filter;
-    //private AspectFactory<Transform> transform;
-    private Stash<MovementComponent> stash;
+
+    private const float gravity = 9.81f;
+
+    
     public override void OnAwake()
     {
         deadFilter = this.World.Filter.With<DeadTag>().Build();
-        //this.filter = this.World.Filter.Extend<Transform>().Build();
-        stash = this.World.GetStash<MovementComponent>();
-        //this.transform = this.World.GetAspectFactory<Transform>();
     }
 
     public override void OnUpdate(float deltaTime)
     {
-        //var transformList = new List<Transform>();
-
         foreach (var entity in deadFilter)
         {
-            Transform body = entity.GetComponent<MovementComponent>().Transform;
-            body.position = new Vector3(0, 0);
+            ref var entityMoveComp = ref entity.GetComponent<MovementComponent>();
+            ref Transform body = ref entityMoveComp.Transform;
+            ref Vector3 velocity = ref entityMoveComp.Velocity;
+            velocity.x = 1f;
+            velocity.y = 0.5f;
+            //rand = new Unity.Mathematics.Random(100);
+            //float directionX = rand.NextFloat(-1f, 1f);
+            //float directionY = rand.NextFloat(1f, 3f);
+
+            //velocity.x = directionX * 1f;
+            //velocity.y = directionX * 0.5f;
+
+
+            body.position += new Vector3(velocity.x, velocity.y, 0f);
             //Destroy(entity.ID);
 
         }

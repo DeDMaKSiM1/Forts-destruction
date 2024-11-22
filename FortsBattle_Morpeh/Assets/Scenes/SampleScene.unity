@@ -736,9 +736,9 @@ MonoBehaviour:
   updateSystems:
   - enabled: 1
     system: {fileID: 11400000, guid: 6405cb037575d8a4daa197a113fc739c, type: 2}
+  fixedUpdateSystems:
   - enabled: 1
     system: {fileID: 11400000, guid: 1913aec8fd771cc45afcab29c0c8adae, type: 2}
-  fixedUpdateSystems: []
   lateUpdateSystems: []
   cleanupSystems: []
 --- !u!4 &1173157596
@@ -1059,7 +1059,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4286203104413700606, guid: 6ff4b15c47665e94f8b71726d603fdd2, type: 3}
       propertyPath: serializedData.healthPoint
-      value: 9000
+      value: 30000
       objectReference: {fileID: 0}
     - target: {fileID: 4582556216310290899, guid: 6ff4b15c47665e94f8b71726d603fdd2, type: 3}
       propertyPath: m_LocalPosition.x
