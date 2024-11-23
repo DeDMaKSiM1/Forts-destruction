@@ -8,4 +8,6 @@ using Unity.IL2CPP.CompilerServices;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 public struct ProjectileComponent : IComponent
 {
+    public Rigidbody2D rb;
+    public GameObject gameObject;
 }

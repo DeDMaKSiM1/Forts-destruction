@@ -177,6 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04489552144e88f4d8dcf08ea910d8e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializedData:
+    rb: {fileID: 248991005207295014}
   blockDamage: 10
 --- !u!114 &2633967012117473463
 MonoBehaviour:
@@ -207,4 +209,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedData:
     Transform: {fileID: 1774551917298378469}
-    Force: 10
+    Velocity: {x: 0, y: 0, z: 0}
+    ThrowForce: 0

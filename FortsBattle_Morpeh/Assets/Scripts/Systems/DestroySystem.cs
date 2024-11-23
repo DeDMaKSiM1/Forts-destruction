@@ -18,7 +18,7 @@ public sealed class DestroySystem : FixedUpdateSystem
 
     private const float gravity = 9.81f;
 
-    
+
     public override void OnAwake()
     {
         deadFilter = this.World.Filter.With<DeadTag>().Build();
@@ -28,62 +28,43 @@ public sealed class DestroySystem : FixedUpdateSystem
     {
         foreach (var entity in deadFilter)
         {
-            ref var entityMoveComp = ref entity.GetComponent<MovementComponent>();
-            ref Transform body = ref entityMoveComp.Transform;
-            ref Vector3 velocity = ref entityMoveComp.Velocity;
-            velocity.x = 1f;
-            velocity.y = 0.5f;
-            //rand = new Unity.Mathematics.Random(100);
-            //float directionX = rand.NextFloat(-1f, 1f);
-            //float directionY = rand.NextFloat(1f, 3f);
-
-            //velocity.x = directionX * 1f;
-            //velocity.y = directionX * 0.5f;
-
-
-            body.position += new Vector3(velocity.x, velocity.y, 0f);
-            //Destroy(entity.ID);
-
+            Destroy(entity);
         }
-
-        //var nativeFilter = this.filter.AsNative();
-
-        //Debug.Log("Внутри Job инициализации");
-        //var parallelJob = new MoveJob
-        //{
-        //    entities = nativeFilter,
-        //    moveComponent = stash.AsNative(),
-        //};
-        //Debug.Log("Инициализация успешна");
-
-        //var TransArrayAccess = new TransformAccessArray();
-
-        //World.JobHandle = parallelJob.Schedule(TransArrayAccess);
     }
-    private void Destroy(EntityId target)
+
+    private void Destroy(Entity entity)
     {
-        if (World.TryGetEntity(target, out var entity))
+        if (!entity.Has<HealthComponent>())
         {
-            if (!entity.Has<HealthComponent>())
-            {
-                return;
-            }
-            ref var healthComponent = ref entity.GetComponent<HealthComponent>();
-            if (healthComponent.healthPoint <= 0)
-            {
-
-                if (entity.Has<BlockComponent>())
-                {
-                    //ref var blockTransfom = ref entity.GetComponent<MovementComponent>();
-
-                    Destroy(healthComponent.gameObject);
-
-                }
-                else if (entity.Has<ProjectileComponent>())
-                {
-                    Destroy(healthComponent.gameObject);
-                }
-            }
+            return;
         }
+
+        ref var healthComponent = ref entity.GetComponent<HealthComponent>();
+        if (healthComponent.healthPoint <= 0)
+        {
+
+            if (entity.Has<BlockComponent>())
+            {
+                ref var blockComp = ref entity.GetComponent<BlockComponent>();
+                blockComp.rb.bodyType = RigidbodyType2D.Dynamic; 
+                healthComponent.gameObject.layer = 6;
+
+                blockComp.rb.AddForce(new(-1  * 200f, 202));
+
+
+                Destroy(healthComponent.gameObject, 3);
+                entity.RemoveComponent<DeadTag>();
+            }
+            else if (entity.Has<ProjectileComponent>())
+            {
+                Destroy(healthComponent.gameObject);
+                entity.RemoveComponent<DeadTag>();
+
+            }
+            else
+                return;
+        }
+
     }
+
 }

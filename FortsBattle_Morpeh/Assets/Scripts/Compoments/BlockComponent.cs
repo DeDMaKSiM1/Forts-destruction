@@ -8,5 +8,6 @@ using Unity.IL2CPP.CompilerServices;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 public struct BlockComponent  : IComponent
 {
+    public Rigidbody2D rb;
 
 }
