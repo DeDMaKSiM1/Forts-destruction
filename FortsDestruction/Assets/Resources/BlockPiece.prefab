@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1242313545566369127}
   - component: {fileID: 1679711581196503445}
   - component: {fileID: 6314578808757520141}
+  - component: {fileID: 3195214043877467621}
   m_Layer: 0
   m_Name: BlockPiece
   m_TagString: Block
@@ -180,13 +181,13 @@ MonoBehaviour:
   OnHealthZero:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 639374275513006562}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 3195214043877467621}
+        m_TargetAssemblyTypeName: Assets.Scripts.Physics.BlockPhysics, Assembly-CSharp
+        m_MethodName: PhysicsOn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -206,3 +207,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModifyValue: -10
   Tag: Projectile
+--- !u!114 &3195214043877467621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639374275513006562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7a6df12bc4c6f408c7d2c079b291ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroEnemyCoefficient: 1

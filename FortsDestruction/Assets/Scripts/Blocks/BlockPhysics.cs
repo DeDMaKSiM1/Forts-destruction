@@ -16,6 +16,7 @@ namespace Assets.Scripts.Physics
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.AddForce(new(heroEnemyCoefficient * 0.5f * Random.Range(2f, 6f), 0.7f * Random.Range(-4f, 6f)));
+            Destroy(gameObject,3);
         }
 
     }
